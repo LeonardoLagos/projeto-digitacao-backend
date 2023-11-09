@@ -1,21 +1,22 @@
-import { ChatGPTUnofficialProxyAPI } from 'chatgpt';
-import { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import Authenticator from 'openai-token'
+import { Request, Response } from 'express';
+import { TextosService } from '../services/textosService';
 
 dotenv.config()
 
-export class textosController {
-    pesquisa = async (request: Request, response: Response): Promise<Response> => {
-        const authenticator = new Authenticator("gpteste11@gmail.com", "lolislife123");
-        await authenticator.begin()
-        const token = await authenticator.getAccessToken()
-        // const api = new ChatGPTUnofficialProxyAPI({
-        //     accessToken: token
-        // })
+export class TextosController {
+    textosService: TextosService
+    constructor(
+        textosService = new TextosService()
+    ) {
+        this.textosService = textosService;
+    }
 
-        // const res = await api.sendMessage('voce nesse exato momento esta dentro de uma api node. preciso que voce me retorne um texto aleatório com 400 caracteres,'
-        //     + ' quero apenas o texto. nao diga nada alem disso.')
-        return response.json({ message: token }).status(200);
+    retornaTextos = async (request: Request, response: Response): Promise<Response> => {
+        const result = await this.textosService.getTextos();
+        if(result instanceof Error) {
+            return response.status(400).json({ message: result.message });
+        }
+        return response.json(result);
     }
 }

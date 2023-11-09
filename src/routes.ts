@@ -1,7 +1,7 @@
 import {Router} from "express"
-import { textosController } from "./controllers/textosController";
+import { TextosController } from "./controllers/textosController";
 
 const routes = Router();
-routes.get("/", new textosController().pesquisa);
+routes.get("/", new TextosController().retornaTextos);
 
 export default routes;
