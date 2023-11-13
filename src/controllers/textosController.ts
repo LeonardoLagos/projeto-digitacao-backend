@@ -13,10 +13,20 @@ export class TextosController {
     }
 
     retornaTextos = async (request: Request, response: Response): Promise<Response> => {
-        const result = await this.textosService.getTextos();
-        if(result instanceof Error) {
-            return response.status(400).json({ message: result.message });
+        try {
+            const quantidade = request.query.quantidade ? parseInt(request.query.quantidade as string) : 10;
+
+            if (Number.isNaN(quantidade)) {
+                return response.status(400).json({ message: 'Quantidade inválida' });
+            }
+            const result = await this.textosService.getTextos(quantidade);
+
+            if (result instanceof Error) {
+                return response.status(400).json({ message: result.message });
+            }
+            return response.json(result);
+        } catch (err) {
+            return response.status(400).json({ message: 'Erro na conversão: "Quantidade"' });
         }
-        return response.json(result);
     }
 }
