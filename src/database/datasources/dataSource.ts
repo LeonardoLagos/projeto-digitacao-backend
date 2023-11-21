@@ -8,7 +8,7 @@ export const dataSource = new DataSource({
     password: "a",
     database: "projetoDigitacao",
     entities: ['src/database/entities/*.ts'],
-    migrations: ['src/database/entities/*.ts'],
+    migrations: ['src/database/migrations/*.ts'],
     migrationsTableName: '_migrations',
 })
 

@@ -11,7 +11,7 @@ export class Textos {
     @Column()
     categoria: string;
 
-    @Column({default: "CURRENT_TIMESTAMP"})
+    @Column()
     data: Date;
 
     @Column()
