@@ -1,0 +1,59 @@
+import { MigrationInterface, QueryRunner, Table } from "typeorm"
+
+export class HistoricoUsuarios1700741588754 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        queryRunner.createTable(new Table({
+            name: "historico_usuarios",
+            columns: [
+                {
+                    name: "id",
+                    type: "int",
+                    isPrimary: true,
+                    isGenerated: true,
+                },
+                {
+                    name: "id_usuario",
+                    type: "varchar",
+                    isNullable: false,
+                },
+                {
+                    name: "texto",
+                    type: "varchar",
+                    isNullable: false,
+                },
+                {
+                    name: "numero_acertos",
+                    type: "int",
+                    isNullable: false,
+                },
+                {
+                    name: "numero_erros",
+                    type: "int",
+                    isNullable: false,
+                },
+                {
+                    name: "tempo_total",
+                    type: "int",
+                    isNullable: false,
+                },
+                {
+                    name: "data",
+                    type: "date",
+                    isNullable: false,
+                    default: 'CURRENT_TIMESTAMP',
+                },
+                {
+                    name: "status",
+                    type: "varchar",
+                    isNullable: false,
+                },
+            ],
+        }))
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        queryRunner.dropTable("historico_usuarios")
+    }
+
+}
