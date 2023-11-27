@@ -28,8 +28,8 @@ export class HistoricoUsuariosService {
         return itemDb;
     }
 
-    async cadastraHistoricoUsuarios(id_usuario: string, texto: string, numero_acertos: number, numero_erros: number, tempo_total: number) {
-        const itemDb = await this.historicoUsuariosRepository.save({ id_usuario, texto, status: 'ativo', numero_acertos, numero_erros, tempo_total });
+    async cadastraHistoricoUsuarios(id_usuario: string, texto: string, numero_acertos: number, numero_erros: number, tempo_total: number, palavras_por_minuto: number) {
+        const itemDb = await this.historicoUsuariosRepository.save({ id_usuario, texto, status: 'ativo', numero_acertos, numero_erros, tempo_total, palavras_por_minuto });
 
         if (itemDb instanceof Error) {
             return new Error("Erro ao cadastrar historicoUsuarios");
@@ -38,7 +38,7 @@ export class HistoricoUsuariosService {
     }
 
     async buscaHistoricoPorUsuario(id_usuario: string) {
-        const itemDb = await this.historicoUsuariosRepository.find({ where: { id_usuario: id_usuario, status: "ativo" }, select: ["texto", "numero_acertos", "numero_erros", "tempo_total", "data"] });
+        const itemDb = await this.historicoUsuariosRepository.find({ where: { id_usuario: id_usuario, status: "ativo" }, select: ["texto", "numero_acertos", "numero_erros", "tempo_total", "palavras_por_minuto", "data"] });
 
         if (itemDb instanceof Error) {
             return new Error("Histórico vazio");

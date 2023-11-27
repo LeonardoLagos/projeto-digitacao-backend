@@ -21,6 +21,9 @@ export class HistoricoUsuarios {
     tempo_total: number;
 
     @Column()
+    palavras_por_minuto: number;
+
+    @Column()
     data: Date;
 
     @Column()

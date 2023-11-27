@@ -10,13 +10,13 @@ export class HistoricoUsuariosController {
 
     cadastraHistoricoUsuarios = async (request: Request, response: Response) => {
         try {
-            const { id_usuario, texto, quantidade_acertos, quantidade_erros, tempo_total } = request.body;
+            const { id_usuario, texto, quantidade_acertos, quantidade_erros, tempo_total, palavras_por_minuto } = request.body;
 
             if (!id_usuario || !texto) {
                 response.status(400).json({ message: 'Dados inválidos' });
             }
 
-            const result = await this.historicoUsuariosService.cadastraHistoricoUsuarios(id_usuario, texto, quantidade_acertos, quantidade_erros, tempo_total);
+            const result = await this.historicoUsuariosService.cadastraHistoricoUsuarios(id_usuario, texto, quantidade_acertos, quantidade_erros, tempo_total, palavras_por_minuto);
 
             if (result instanceof Error) {
                 return response.status(400).json({ message: result.message });

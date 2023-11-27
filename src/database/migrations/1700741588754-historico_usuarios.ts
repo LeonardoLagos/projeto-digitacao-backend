@@ -38,6 +38,11 @@ export class HistoricoUsuarios1700741588754 implements MigrationInterface {
                     isNullable: false,
                 },
                 {
+                    name: "palavras_por_minuto",
+                    type: "numeric(10,2)",
+                    isNullable: false,
+                },
+                {
                     name: "data",
                     type: "date",
                     isNullable: false,
