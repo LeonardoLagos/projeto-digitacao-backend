@@ -2,6 +2,10 @@ import { HistoricoUsuarios } from "../database/entities/historicoUsuarios";
 import { Repository } from "typeorm";
 import { dataSource as db } from "../database/datasources/dataSource";
 
+interface contagemErros {
+    numero_erros: number,
+    caracter: string
+}
 
 export class HistoricoUsuariosService {
     historicoUsuariosRepository: Repository<HistoricoUsuarios>;
@@ -44,5 +48,32 @@ export class HistoricoUsuariosService {
             return new Error("Histórico vazio");
         }
         return itemDb;
+    }
+
+    async buscaGraficoErrosPorUsuario(id_usuario: string) {	
+        const itemDb = await this.historicoUsuariosRepository.find({ where: { id_usuario: id_usuario, status: "ativo" }, select: ["texto"] });	
+        if (itemDb instanceof Error) {	
+            return new Error("Histórico vazio");	
+        }
+        const erros = [] as contagemErros[];
+        
+        itemDb.forEach((item) => {
+            JSON.parse(item.texto).forEach((item2) => {
+                if (item2.className.includes("erro")) {
+                    const erroAtual = erros.find((erro) => erro.caracter === item2.children);
+                    if(erroAtual !== undefined){
+                        erroAtual.numero_erros++;
+                    }
+                    else{
+                        erros.push({numero_erros: 1, caracter: item2.children});
+                    }
+
+                } else {
+                    item2.acerto = false;
+                }
+            });
+        });
+
+        return erros;	
     }
 }
