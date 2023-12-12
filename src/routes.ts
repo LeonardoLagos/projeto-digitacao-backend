@@ -1,8 +1,7 @@
 import { Router } from "express";
+import { HistoricoTeclasDigitadasController } from "./controllers/historicoTeclasDigitadasController";
 import { HistoricoUsuariosController } from "./controllers/historicoTextosController";
 import { TextosController } from "./controllers/textosController";
-import { HistoricoTeclasDigitadas } from "./database/entities/historicoTeclasDigitadas";
-import { HistoricoTeclasDigitadasController } from "./controllers/historicoTeclasDigitadasController";
 
 const routes = Router();
 routes.get("/", new TextosController().retornaTextos);

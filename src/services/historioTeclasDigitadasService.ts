@@ -1,4 +1,4 @@
-import { HistoricoTeclasDigitadas } from "src/database/entities/historicoTeclasDigitadas";
+import { HistoricoTeclasDigitadas } from "../database/entities/historicoTeclasDigitadas";
 import { Repository } from "typeorm";
 import { dataSource as db } from "../database/datasources/dataSource";
 

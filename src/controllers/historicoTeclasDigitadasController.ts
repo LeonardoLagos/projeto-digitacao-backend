@@ -1,4 +1,4 @@
-import { HistoricoTeclasDigitadasService } from "src/services/historioTeclasDigitadasService";
+import { HistoricoTeclasDigitadasService } from "../services/historioTeclasDigitadasService";
 import { Request, Response } from 'express';
 
 export class HistoricoTeclasDigitadasController {
@@ -14,7 +14,7 @@ export class HistoricoTeclasDigitadasController {
             for (let i = 0; i < lista_teclas.length; i++) {
                 const { id_usuario, caractere_correto, caractere_digitado } = lista_teclas[i];
                 if (!id_usuario || !caractere_correto || !caractere_digitado) {
-                    response.status(400).json({ message: 'Dados inválidos' });
+                    response.status(400).json({ message: 'Dados inválidos', id_usuario, caractere_correto, caractere_digitado });
                 }
                 const result = await this.historicoTeclasDigitadasService.cadastraHistoricoTeclasDigitadas(id_usuario, caractere_correto, caractere_digitado);
                 if (result instanceof Error) {
