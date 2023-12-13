@@ -7,12 +7,6 @@ interface contagemErros {
     caracter: string
 }
 
-interface PorcentagemErros {
-    caracter: string
-    numero_erros: number,
-    numero_acertos: number,
-}
-
 export class HistoricoUsuariosService {
     historicoUsuariosRepository: Repository<HistoricoTextos>;
 
@@ -90,31 +84,5 @@ export class HistoricoUsuariosService {
             return new Error("Erro ao cadastrar historicoUsuarios");
         }
         return itemDb;
-    }
-
-    async buscaPorcentagemErrosPorUsuario(id_usuario: string) {
-        const itemDb = await this.historicoUsuariosRepository.find({ where: { id_usuario: id_usuario, status: "ativo" }, select: ["texto"] });
-        if (itemDb instanceof Error) {
-            return new Error("Histórico vazio");
-        }
-        const listaCaracteres = [] as PorcentagemErros[];
-
-        itemDb.forEach((item) => {
-            JSON.parse(item.texto).forEach((item2) => {
-                let erroAtual = listaCaracteres.find((erro) => erro.caracter === item2.children);
-                if (erroAtual === undefined) {
-                    listaCaracteres.push({ caracter: item2.children, numero_erros: 0, numero_acertos: 0 });
-                    erroAtual = listaCaracteres.find((erro) => erro.caracter === item2.children);
-                }
-
-                if (item2.className.includes("erro")) {
-                    erroAtual.numero_erros++;
-                } else {
-                    erroAtual.numero_acertos++;
-                }
-            });
-        });
-
-        return listaCaracteres;
     }
 }
