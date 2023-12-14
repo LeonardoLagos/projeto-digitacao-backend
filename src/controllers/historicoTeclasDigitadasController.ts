@@ -28,7 +28,7 @@ export class HistoricoTeclasDigitadasController {
         }
     }
 
-    retornaPorcentagemTeclasDigitadas = async (request: Request, response: Response) => {
+    retornaPorcentagemTeclasDigitadasPorUsuario = async (request: Request, response: Response) => {
         try {
             const id_usuario = request.query.id_usuario.toString();
             if (!id_usuario) {
