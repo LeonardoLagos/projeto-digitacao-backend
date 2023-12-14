@@ -86,25 +86,4 @@ export class HistoricoUsuariosController {
             return response.status(400).json({ message: err.message });
         }
     }
-
-    buscaProcentagemErrosPorUsuario = async (request: Request, response: Response) => {
-        try{
-            const id_usuario = request.query.id_usuario.toString();
-
-            if (!id_usuario) {
-                response.status(400).json({ message: 'Dados inválidos' });
-                return;
-            }
-
-            const result = await this.historicoUsuariosService.buscaPorcentagemErrosPorUsuario(id_usuario);
-
-            if (result instanceof Error) {
-                return response.status(400).json({ message: result.message });
-            }
-            return response.status(200).json(result);
-
-        } catch (err) {
-            return response.status(400).json({ message: err.message });
-        }
-    }
 }

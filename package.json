@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles",
     "dev": "ts-node --transpile-only src/server.ts",
+    "start": "npx nodemon src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "yarn typeorm migration:run"
   },
