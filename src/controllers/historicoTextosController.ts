@@ -30,7 +30,6 @@ export class HistoricoUsuariosController {
     buscaHistoricoPorUsuario = async (request: Request, response: Response) => {
         try {
             const id_usuario = request.query.id_usuario.toString();
-            console.log(id_usuario);
 
             if (!id_usuario) {
                 response.status(400).json({ message: 'Dados inválidos' });
