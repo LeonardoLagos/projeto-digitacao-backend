@@ -30,10 +30,12 @@ export class HistoricoTeclasDigitadasController {
 
     retornaPorcentagemTeclasDigitadasPorUsuario = async (request: Request, response: Response) => {
         try {
-            const id_usuario = request.query.id_usuario.toString();
-            if (!id_usuario) {
-                response.status(400).json({ message: 'Dados inválidos', id_usuario });
+            if (request.query.id_usuario == undefined) {
+                response.status(400).json({ message: 'Dados inválidos' });
+                return;
             }
+            const id_usuario = request.query.id_usuario.toString();
+
             const result = await this.historicoTeclasDigitadasService.retornaPorcentagemTeclasDigitadas(id_usuario);
             if (result instanceof Error) {
                 return response.status(400).json({ message: result.message });

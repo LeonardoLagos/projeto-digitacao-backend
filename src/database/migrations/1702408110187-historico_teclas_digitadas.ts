@@ -29,7 +29,7 @@ export class HistoricoTeclasDigitadas1702408110187 implements MigrationInterface
                 },
                 {
                     name: 'data',
-                    type: 'date',
+                    type: 'timestamp with time zone',
                     isNullable: false,
                     default: 'CURRENT_TIMESTAMP',
                 },
