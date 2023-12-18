@@ -18,6 +18,9 @@ export class HistoricoTextos {
     numero_erros: number;
 
     @Column()
+    numero_correcoes: number;
+
+    @Column()
     tempo_total: number;
 
     @Column()

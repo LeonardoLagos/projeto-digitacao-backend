@@ -23,7 +23,9 @@ export class Textos1700511802966 implements MigrationInterface {
                 },
                 {
                     name: "data",
-                    type: "date",
+                    type: "timestamp with time zone",
+                    isNullable: false,
+                    default: 'CURRENT_TIMESTAMP',
                 },
                 {
                     name: "status",
@@ -31,11 +33,6 @@ export class Textos1700511802966 implements MigrationInterface {
                 },
             ],
         }));
-
-        await queryRunner.query(
-            `alter table textos
-            alter column data set default current_timestamp;`
-        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

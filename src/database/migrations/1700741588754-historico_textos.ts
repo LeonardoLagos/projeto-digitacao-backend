@@ -33,6 +33,11 @@ export class HistoricoTextos1700741588754 implements MigrationInterface {
                     isNullable: false,
                 },
                 {
+                    name: "numero_correcoes",
+                    type: "int",
+                    isNullable: false,
+                },
+                {
                     name: "tempo_total",
                     type: "int",
                     isNullable: false,
@@ -44,7 +49,7 @@ export class HistoricoTextos1700741588754 implements MigrationInterface {
                 },
                 {
                     name: "data",
-                    type: "date",
+                    type: "timestamp with time zone",
                     isNullable: false,
                     default: 'CURRENT_TIMESTAMP',
                 },
