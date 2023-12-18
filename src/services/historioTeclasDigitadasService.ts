@@ -53,7 +53,7 @@ export class HistoricoTeclasDigitadasService {
             const soma = item.numero_erros + item.numero_acertos
             item.porcentagem_erros = (item.numero_erros / soma) * 100;
             item.porcentagem_acertos = (item.numero_acertos / soma) * 100;
-            item.label = Number(item.porcentagem_erros).toFixed(2) + '%';
+            item.label = Number(item.porcentagem_erros).toFixed(2).replace('.00', '') + '%';
         });
         return listaCaracteres;
     }
