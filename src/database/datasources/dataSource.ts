@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 
 export const dataSource = new DataSource({
     type: "postgres",
-    host: "54.94.226.196",
+    host: "15.228.13.22",
     port: 5432,
     username: "postgres",
     password: "a",
