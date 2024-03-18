@@ -1,14 +1,15 @@
 import { Router } from "express";
-import { HistoricoTeclasDigitadasController } from "./controllers/historicoTeclasDigitadasController";
-import { HistoricoTextosController } from "./controllers/historicoTextosController";
-import { TextosController } from "./controllers/textosController";
+
+import { KeysHistoricController } from "./controllers/keysHistoricController";
+import { TextosController } from "./controllers/textsController";
 
 const routes = Router();
-routes.get("/", new TextosController().retornaTextos);
-routes.post("/historico/textos", new HistoricoTextosController().cadastraHistoricoUsuarios);
-routes.get("/historico/textos", new HistoricoTextosController().buscaHistoricoPorUsuario);
+routes.get("/texts/getAmount", new TextosController().getAmount);
 
-routes.post("/historico/teclas", new HistoricoTeclasDigitadasController().cadastraHistoricoTeclasDigitadas);
-routes.get("/historico/teclas", new HistoricoTeclasDigitadasController().retornaPorcentagemTeclasDigitadasPorUsuario);
+routes.put("/historic/keys", new KeysHistoricController().register);
+routes.get(
+  "/historic/getPrecision",
+  new KeysHistoricController().returnPrecision
+);
 
 export default routes;

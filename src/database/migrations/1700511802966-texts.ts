@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm"
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class Textos1700511802966 implements MigrationInterface {
+export class Texts1700511802966 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
 
         await queryRunner.createTable(new Table({
-            name: "textos",
+            name: "texts",
             columns: [
                 {
                     name: "id",
@@ -14,17 +14,16 @@ export class Textos1700511802966 implements MigrationInterface {
                     isGenerated: true,
                 },
                 {
-                    name: "texto",
+                    name: "text",
                     type: "varchar",
                 },
                 {
-                    name: "categoria",
+                    name: "category",
                     type: "varchar",
                 },
                 {
-                    name: "data",
+                    name: "date",
                     type: "timestamp with time zone",
-                    isNullable: false,
                     default: 'CURRENT_TIMESTAMP',
                 },
                 {
@@ -36,7 +35,7 @@ export class Textos1700511802966 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("textos");
+        await queryRunner.dropTable("texts");
 
     }
 }
