@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 @Entity("pressed_keys")
 export class PressedKeys {
   @PrimaryColumn("uuid")
-  id: number;
+  id: string;
 
   @Column({ name: "user_id" })
   userId: string;
@@ -15,5 +15,5 @@ export class PressedKeys {
   correctKey: string;
 
   @Column({ name: "created_at" })
-  createdAt: Date;
+  createdAt?: Date;
 }

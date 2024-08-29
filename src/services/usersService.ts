@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { Users } from "src/database/entities/users";
 import { Repository } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 import { dataSource as db } from "../database/datasources/dataSource";
+import { Users } from "../database/entities/users";
 
 export class UsersService {
   usersRepository: Repository<Users>;

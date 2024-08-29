@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { v4 as uuidv4 } from "uuid";
 import { dataSource as db } from "../database/datasources/dataSource";
 import { Historic } from "../database/entities/historic";
 
@@ -19,20 +20,18 @@ export class HistoricService {
     text: string,
     hitCount: number,
     missCount: number,
-    correctionCount: number,
     duration: number,
-    wpm: number
+    textLength: number
   ) {
     const itemDb = await this.historicoTextosRepository.save({
+      id: uuidv4(),
       userId,
       text,
-      status: "ativo",
       hitCount,
       missCount,
-      correctionCount,
       duration,
-      wpm,
-    });
+      textLength,
+    } as Historic);
 
     if (itemDb instanceof Error) {
       return new Error("Erro ao cadastrar historico");
@@ -43,15 +42,7 @@ export class HistoricService {
   async searchByUserId(userId: string) {
     const itemDb = await this.historicoTextosRepository.find({
       where: { userId },
-      select: [
-        "fullText",
-        "hitCount",
-        "missCount",
-        "correctionCount",
-        "duration",
-        "wpm",
-        "createdAt",
-      ],
+      select: ["hitCount", "missCount", "duration", "textLength", "createdAt"],
     });
 
     if (itemDb instanceof Error) {

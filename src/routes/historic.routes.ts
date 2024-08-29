@@ -1,14 +1,11 @@
 import { Router } from "express";
-import { HistoricController } from "src/controllers/historicController";
+import { HistoricController } from "../controllers/historicController";
 
-const coletaPerguntasController = new HistoricController();
+const historicController = new HistoricController();
 
-const coletaPerguntasRouter = Router();
+const historicRouter = Router();
 
-coletaPerguntasRouter.post("/", coletaPerguntasController.register);
-coletaPerguntasRouter.get(
-  "/getByUserId",
-  coletaPerguntasController.searchByUserId
-);
+historicRouter.post("/", historicController.register);
+historicRouter.get("/getByUserId", historicController.searchByUserId);
 
-export default coletaPerguntasRouter;
+export default historicRouter;

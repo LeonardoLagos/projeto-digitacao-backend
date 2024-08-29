@@ -21,7 +21,7 @@ export class Users {
   profilePicture: string;
 
   @Column({ name: "created_at" })
-  createdAt: Date;
+  createdAt?: Date;
 
   @Column()
   status: string;

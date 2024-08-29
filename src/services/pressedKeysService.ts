@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { v4 as uuidv4 } from "uuid";
 import { dataSource as db } from "../database/datasources/dataSource";
 import { PressedKeys } from "../database/entities/pressedKeys";
 
@@ -20,10 +21,11 @@ export class PressedKeysService {
 
   async register(userId: string, pressedKey: string, correctKey: string) {
     const itemDb = await this.pressedKeysRepository.save({
+      id: uuidv4(),
       userId,
       pressedKey,
       correctKey,
-    });
+    } as PressedKeys);
 
     if (itemDb instanceof Error) {
       return new Error("Erro ao cadastrar historicoTeclasDigitadas");

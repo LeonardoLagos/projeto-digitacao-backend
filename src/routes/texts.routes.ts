@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { TextsController } from "src/controllers/textsController";
+import { TextsController } from "../controllers/textsController";
 
 const textsController = new TextsController();
 

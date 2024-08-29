@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { UsersController } from "src/controllers/usersController";
+import { UsersController } from "../controllers/usersController";
 
 const usersController = new UsersController();
 
-const textsRouter = Router();
+const userRouter = Router();
 
-textsRouter.post("/login", usersController.login);
-textsRouter.post("/dataByToken", usersController.getDataByToken);
-textsRouter.post("/register", usersController.register);
+userRouter.post("/login", usersController.login);
+userRouter.post("/dataByToken", usersController.getDataByToken);
+userRouter.post("/register", usersController.register);
 
-export default textsRouter;
+export default userRouter;

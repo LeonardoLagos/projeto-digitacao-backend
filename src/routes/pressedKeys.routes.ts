@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { PressedKeysController } from "src/controllers/pressedKeysController";
+import { PressedKeysController } from "../controllers/pressedKeysController";
 
 const pressedKeysController = new PressedKeysController();
 
