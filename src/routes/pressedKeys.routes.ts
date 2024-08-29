@@ -5,10 +5,10 @@ const pressedKeysController = new PressedKeysController();
 
 const pressedKeysRouter = Router();
 
+pressedKeysRouter.post("/", pressedKeysController.register);
 pressedKeysRouter.get(
-  "/getPercentage",
+  "/getKeysPercentage",
   pressedKeysController.getKeysPercentage
 );
-pressedKeysRouter.post("/", pressedKeysController.register);
 
 export default pressedKeysRouter;

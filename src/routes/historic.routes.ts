@@ -5,10 +5,10 @@ const coletaPerguntasController = new HistoricController();
 
 const coletaPerguntasRouter = Router();
 
+coletaPerguntasRouter.post("/", coletaPerguntasController.register);
 coletaPerguntasRouter.get(
-  "/getByUser",
+  "/getByUserId",
   coletaPerguntasController.searchByUserId
 );
-coletaPerguntasRouter.post("/", coletaPerguntasController.register);
 
 export default coletaPerguntasRouter;
